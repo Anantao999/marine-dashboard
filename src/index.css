@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary-container: #4cd7d0;
+  --color-on-secondary-fixed: #1a1b1f;
+  --color-on-surface: #1a1b1f;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #eef1f4;
+  --color-surface-container: #f2f4f6;
+  --color-surface-container-high: #dfe4ea;
+  --color-surface-variant: #cfd6de;
+  --color-surface-container-highest: #c8ccd4;
+  --color-tertiary: #bb161f;
+  --color-outline: #717786;
+  --color-inverse-surface: #2e3132;
+  --color-tertiary-fixed: #79ff5b;
+  --color-tertiary-fixed-dim: #2ae500;
+  --color-on-surface-variant: #414755;
+  --color-surface: #f8f9fb;
+  --color-background: #f1f3f5;
+  --color-on-background: #191c1e;
+  --color-primary: #0058bc;
+  --color-error: #ba1a1a;
+  --color-inverse-primary: #adc6ff;
+  --color-on-primary: #ffffff;
+  --color-on-tertiary: #ffffff;
+}
+
+.dark {
+  --color-primary-container: #4cd7d0;
+  --color-on-secondary-fixed: #e3e3e8;
+  --color-on-surface: #e3e3e8;
+  --color-surface-container-lowest: #1a1b1f;
+  --color-surface-container-low: #1f2024;
+  --color-surface-container: #242629;
+  --color-surface-container-high: #2c2d32;
+  --color-surface-variant: #35363b;
+  --color-surface-container-highest: #3e3f44;
+  --color-tertiary: #ff6b6b;
+  --color-outline: #5e5f64;
+  --color-inverse-surface: #e3e3e8;
+  --color-tertiary-fixed: #55ff4d;
+  --color-tertiary-fixed-dim: #20c800;
+  --color-on-surface-variant: #c2c3c8;
+  --color-surface: #1a1b1f;
+  --color-background: #121317;
+  --color-on-background: #e3e3e8;
+  --color-primary: #8ec4ff;
+  --color-error: #ff6b6b;
+  --color-inverse-primary: #0058bc;
+  --color-on-primary: #003060;
+  --color-on-tertiary: #690005;
+}
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @apply font-body;
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+  }
+}
+
+@layer utilities {
+  .gauge-arc {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    stroke-dasharray: 201.06;
+    stroke-dashoffset: calc(201.06 * (1 - var(--percent, 0)));
+    transition: stroke-dashoffset 400ms ease;
+  }
+
+  .warning-hotspot {
+    box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.7);
+    animation: pulse-red 2s infinite;
+  }
+
+  @keyframes pulse-red {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.7); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(186, 26, 26, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(186, 26, 26, 0); }
+  }
+
+  .cylinder-bar {
+    box-shadow: 0 0 10px rgba(0, 112, 235, 0.6);
+  }
+
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .dark > .glassmorphism {
+    background: rgba(26, 27, 31, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dark > .spatial-tag {
+    background: rgba(26, 27, 31, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+
+  .spatial-tag {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .bg-grid {
+    background-color: #121317;
+    background-image: radial-gradient(rgba(80, 82, 86, 0.5) 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
+  }
+
+  .dark .config-page .bg-white {
+    background-color: var(--color-surface-container-lowest);
+  }
+
+  .dark .config-page .bg-gray-50 {
+    background-color: var(--color-surface-container-low);
+  }
+
+  .dark .config-page .bg-gray-100 {
+    background-color: var(--color-surface-container-high);
+  }
+
+  .dark .config-page .text-gray-800,
+  .dark .config-page .text-gray-700 {
+    color: var(--color-on-surface);
+  }
+
+  .dark .config-page .text-gray-600,
+  .dark .config-page .text-gray-500 {
+    color: var(--color-on-surface-variant);
+  }
+
+  .dark .config-page .text-gray-400 {
+    color: #aeb4bf;
+  }
+
+  .dark .config-page .border-gray-100,
+  .dark .config-page .border-gray-200 {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .dark .access-management-page .text-slate-800,
+  .dark .access-management-page .text-slate-900,
+  .dark .access-management-page .text-slate-700 {
+    color: var(--color-on-surface);
+  }
+
+  .dark .access-management-page .text-slate-600,
+  .dark .access-management-page .text-slate-500 {
+    color: var(--color-on-surface-variant);
+  }
+
+  .dark .access-management-page .text-slate-400 {
+    color: #aeb4bf;
+  }
+
+  .dark .access-management-page .bg-white {
+    background-color: var(--color-surface-container-lowest);
+  }
+
+  .dark .access-management-page .bg-slate-50 {
+    background-color: var(--color-surface-container-low);
+  }
+
+  .dark .access-management-page .bg-slate-100 {
+    background-color: var(--color-surface-container-high);
+  }
+
+  .dark .access-management-page .border-slate-100,
+  .dark .access-management-page .border-slate-200 {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .engine-section-diagram svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  :fullscreen .engine-systems-main,
+  .engine-systems-page:fullscreen .engine-systems-main {
+    gap: 0.5rem;
+  }
+
+  :fullscreen .engine-systems-left,
+  .engine-systems-page:fullscreen .engine-systems-left {
+    width: 7rem;
+  }
+
+  :fullscreen .engine-systems-right,
+  .engine-systems-page:fullscreen .engine-systems-right {
+    width: 11.5rem;
+  }
+
+  :fullscreen .engine-section-stage,
+  .engine-systems-page:fullscreen .engine-section-stage {
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  :fullscreen .engine-systems-bottom,
+  .engine-systems-page:fullscreen .engine-systems-bottom {
+    gap: 0.5rem;
+    padding-bottom: 0.25rem;
+  }
+
+  @media (min-width: 1800px) and (min-height: 900px) {
+    .engine-systems-main {
+      gap: 0.625rem;
+    }
+
+    .engine-systems-left {
+      width: 7rem;
+    }
+
+    .engine-systems-right {
+      width: 11.5rem;
+    }
+  }
+}
